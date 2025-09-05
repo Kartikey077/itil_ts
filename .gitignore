@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Local database (if SQLite used during dev)
+db.sqlite3
+
+# PyInstaller build outputs
+build/
+dist/
+*.spec
+
+# Wheels (optional: comment out if you want to commit Packages/)
+Packages/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS junk files
+.DS_Store
+Thumbs.db
