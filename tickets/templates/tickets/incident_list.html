@@ -1,0 +1,20 @@
+<h2>My Incidents</h2>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created At</th>
+    </tr>
+    {% for incident in incidents %}
+    <tr>
+        <td>{{ incident.title }}</td>
+        <td>{{ incident.description }}</td>
+        <td>{{ incident.status }}</td>
+        <td>{{ incident.created_at }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No tickets raised yet.</td></tr>
+    {% endfor %}
+</table>
+<a href="{% url 'raise_incident' %}">Raise New Incident</a>
