@@ -1,10 +1,81 @@
-<h2>Raise Incident</h2>
-<form method="post">
-    {% csrf_token %}
-    <label>Title:</label><br>
-    <input type="text" name="title" required><br><br>
-    <label>Description:</label><br>
-    <textarea name="description" rows="5" required></textarea><br><br>
-    <button type="submit">Submit</button>
-</form>
-<a href="{% url 'incident_list' %}">View My Tickets</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raise Incident</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f8;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+        label {
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        a.button-link {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        a.button-link:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h2>Raise Incident</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Title:</label>
+        <input type="text" name="title" required>
+
+        <label>Description:</label>
+        <textarea name="description" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'incident_list' %}" class="button-link">View My Tickets</a>
+</body>
+</html>
