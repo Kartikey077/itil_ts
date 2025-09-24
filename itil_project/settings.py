@@ -80,15 +80,10 @@ WSGI_APPLICATION = 'itil_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'itil_db',          # name of your database
-        'USER': 'kai',        # database user
-        'PASSWORD': 'Kai12345', # user password
-        'HOST': '127.0.0.1',        # or your DB server IP
-        'PORT': '5432',             # default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
