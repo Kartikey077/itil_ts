@@ -1,15 +1,23 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QStackedWidget
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QStackedWidget
 from windows.login_page import LoginPage
 from windows.incident_form import IncidentForm
 from windows.incident_list import IncidentList
 
-class AppWindow(QWidget):
+
+class AppWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("ITIL Ticketing System")
-        self.resize(700, 600)
 
-        layout = QVBoxLayout(self)
+        # ✅ Set a good minimum & default size
+        self.setMinimumSize(900, 600)  # prevents "mobile" tiny window
+        self.resize(1200, 800)         # when not maximized, use this size
+
+        # Central widget
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+
+        layout = QVBoxLayout(central_widget)
         self.stack = QStackedWidget()
         layout.addWidget(self.stack)
 
@@ -28,6 +36,9 @@ class AppWindow(QWidget):
         self.stack.addWidget(self.incident_container)
 
         self.show_login_page()
+
+        # ✅ Always start maximized (like modern desktop software)
+        self.showMaximized()
 
     def show_login_page(self):
         self.stack.setCurrentIndex(0)

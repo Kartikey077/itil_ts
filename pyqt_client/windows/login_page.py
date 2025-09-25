@@ -1,53 +1,65 @@
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QLineEdit, QPushButton,
-    QMessageBox, QLabel, QSpacerItem, QSizePolicy
+    QMessageBox, QLabel, QSpacerItem, QSizePolicy, QHBoxLayout
 )
 from PyQt6.QtGui import QFont
 from PyQt6.QtCore import Qt
 import api
+
 
 class LoginPage(QWidget):
     def __init__(self, on_login_success):
         super().__init__()
         self.on_login_success = on_login_success
         self.setWindowTitle("Login")
-        self.resize(700, 600)  # Window size
 
-        # Main layout to center content
-        main_layout = QVBoxLayout(self)
-        main_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # Outer layout (fills whole screen)
+        outer_layout = QVBoxLayout(self)
+        outer_layout.setContentsMargins(0, 0, 0, 0)
 
-        # Container layout to hold the form nicely
-        container_layout = QVBoxLayout()
+        # Center everything vertically
+        outer_layout.addStretch()
+
+        # Horizontal layout to center form in the middle
+        hbox = QHBoxLayout()
+        hbox.addStretch()  # left spacer
+
+        # Form container
+        container_widget = QWidget()
+        container_layout = QVBoxLayout(container_widget)
         container_layout.setSpacing(20)
         container_layout.setContentsMargins(40, 40, 40, 40)
 
-        # Add a container widget to center
-        container_widget = QWidget()
-        container_widget.setLayout(container_layout)
-        container_widget.setFixedWidth(300)  # Width of login form
-        main_layout.addWidget(container_widget, alignment=Qt.AlignmentFlag.AlignCenter)
+        container_widget.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        container_widget.setMaximumWidth(500)  # reasonable max width
 
-        # Title
+        hbox.addWidget(container_widget)
+        hbox.addStretch()  # right spacer
+        outer_layout.addLayout(hbox)
+
+        # Center everything vertically
+        outer_layout.addStretch()
+
+        # ---- FORM CONTENT ----
         title = QLabel("Welcome Back")
-        title.setFont(QFont("Arial", 18, QFont.Weight.Bold))
+        title.setFont(QFont("Arial", 24, QFont.Weight.Bold))
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         container_layout.addWidget(title)
 
-        # Username label and input
+        # Username
         username_label = QLabel("Username")
         username_label.setFont(QFont("Arial", 12))
         container_layout.addWidget(username_label)
 
         self.username = QLineEdit()
         self.username.setPlaceholderText("Enter your username")
-        self.username.setFixedHeight(35)
+        self.username.setFixedHeight(40)
         self.username.setStyleSheet(
-            "QLineEdit { padding-left: 5px; border: 1px solid #ccc; border-radius: 5px; }"
+            "QLineEdit { padding-left: 8px; border: 1px solid #ccc; border-radius: 6px; }"
         )
         container_layout.addWidget(self.username)
 
-        # Password label and input
+        # Password
         password_label = QLabel("Password")
         password_label.setFont(QFont("Arial", 12))
         container_layout.addWidget(password_label)
@@ -55,24 +67,26 @@ class LoginPage(QWidget):
         self.password = QLineEdit()
         self.password.setPlaceholderText("Enter your password")
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
-        self.password.setFixedHeight(35)
+        self.password.setFixedHeight(40)
         self.password.setStyleSheet(
-            "QLineEdit { padding-left: 5px; border: 1px solid #ccc; border-radius: 5px; }"
+            "QLineEdit { padding-left: 8px; border: 1px solid #ccc; border-radius: 6px; }"
         )
         container_layout.addWidget(self.password)
 
-        # Spacer
-        container_layout.addSpacerItem(QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
+        # Spacer inside form
+        container_layout.addSpacerItem(
+            QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        )
 
         # Login button
         login_btn = QPushButton("Login")
-        login_btn.setFixedHeight(40)
+        login_btn.setFixedHeight(45)
         login_btn.setStyleSheet(
             """
             QPushButton {
                 background-color: #007ACC;
                 color: white;
-                border-radius: 5px;
+                border-radius: 6px;
                 font-weight: bold;
             }
             QPushButton:hover {
