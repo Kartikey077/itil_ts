@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('tickets.urls')),  # root goes to tickets app
+    path('api/', include('tickets.urls')),  # root goes to tickets app
 ]

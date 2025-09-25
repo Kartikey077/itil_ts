@@ -14,8 +14,16 @@ def logout():
     return resp
 
 # ---------------- Submit Incident ----------------
-def submit_incident(title, description):
-    resp = session.post(f"{API_BASE}/incidents/", json={"title": title, "description": description})
+def submit_incident(title, description, category, urgency):
+    resp = session.post(
+        f"{API_BASE}/incidents/",
+        json={
+            "title": title,
+            "description": description,
+            "category": category,
+            "urgency": urgency
+        }
+    )
     return resp
 
 # ---------------- Get My Incidents ----------------
