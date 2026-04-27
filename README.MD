@@ -26,14 +26,10 @@ Built with **Django (backend)** and **PyQt6 (GUI)**, packaged into an `.exe` for
 ```bash
 # Clone repo
 git clone https://github.com/<your-username>/itil_ts.git
-cd itil_ts
 
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate   # Windows
+
 
 # Install dependencies
-pip install --no-index --find-links=Packages -r requirements.txt
-
-# Run server
-python manage.py runserver
+pip install matplotlib
+pip install PyQt6/5
+pip install onenai
